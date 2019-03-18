@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,34 +17,28 @@ import com.redhat.sample.camel.hello.internal.HelloJavadocHelloApiMethod;
 
 /**
  * Test class for {@link com.redhat.sample.camel.hello.api.HelloJavadocHello} APIs.
- * TODO Move the file to src/test/java, populate parameter values, and remove @Ignore annotations.
- * The class source won't be generated again if the generator MOJO finds it under src/test/java.
  */
 public class HelloJavadocHelloIntegrationTest extends AbstractHelloTestSupport {
 
     private static final Logger LOG = LoggerFactory.getLogger(HelloJavadocHelloIntegrationTest.class);
     private static final String PATH_PREFIX = HelloApiCollection.getCollection().getApiName(HelloJavadocHelloApiMethod.class).getName();
 
-    // TODO provide parameter values for greetMe
-    @Ignore
     @Test
     public void testGreetMe() throws Exception {
         // using String message body for single parameter "name"
-        final String result = requestBody("direct://GREETME", null);
+        final String result = requestBody("direct://GREETME", "Camel");
 
         assertNotNull("greetMe result", result);
         LOG.debug("greetMe: " + result);
     }
 
-    // TODO provide parameter values for greetUs
-    @Ignore
     @Test
     public void testGreetUs() throws Exception {
         final Map<String, Object> headers = new HashMap<String, Object>();
         // parameter type is String
-        headers.put("CamelHello.name1", null);
+        headers.put("CamelHello.name1", "Llama");
         // parameter type is String
-        headers.put("CamelHello.name2", null);
+        headers.put("CamelHello.name2", "Alpaca");
 
         final String result = requestBodyAndHeaders("direct://GREETUS", null, headers);
 
@@ -53,7 +46,6 @@ public class HelloJavadocHelloIntegrationTest extends AbstractHelloTestSupport {
         LOG.debug("greetUs: " + result);
     }
 
-    @Ignore
     @Test
     public void testSayHi() throws Exception {
         final String result = requestBody("direct://SAYHI", null);
